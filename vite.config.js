@@ -1,7 +1,16 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from "vite";
+import fs from "fs";
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+	server: {
+		https: {
+			key: fs.readFileSync(
+				"C:/Windows/System32/certificates/localhost+2-key.pem"
+			),
+			cert: fs.readFileSync("C:/Windows/System32/certificates/localhost+2.pem"),
+		},
+		host: true,
+		port: 5174,
+		strictPort: false,
+	},
+});
